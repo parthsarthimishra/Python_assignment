@@ -2,7 +2,7 @@
 # class of matrix 
 class matrix:
     def __init__(self,list):
-        self.m=[]
+        #self.m=[]
         self.m=list
         #print(self.m)
 
@@ -21,9 +21,9 @@ class matrix:
                     element=matrix[i][j]+matrix2[i][j]
                     row.append(element)
                 sum.append(row)
-            print(sum)    
+            return sum    
         else:
-            print("Data not applicable for sum ")
+            return "Data not applicable for sum "
 
 #subtract
     def __sub__(self, other):
@@ -41,8 +41,9 @@ class matrix:
                     element=matrix[i][j]-matrix2[i][j]
                     row.append(element)
                 sub.append(row)
-            print(sub) 
-
+            return sub 
+        else:
+            return "Data not applicable for sub "
     
  #multiply
     def __mul__(self, other):
@@ -76,6 +77,7 @@ class matrix:
 
     #determinant
     def find_det(matrix):
+        
         det=0
     
         index = list(range(len(matrix)))
@@ -118,11 +120,12 @@ class matrix:
             return res
         else:
             return "not applicable matrix"             
-
 # A=matrix([[2, 3],[4, 5]])
 # B=matrix([[2, 3, 6],[4, 5, 6]])
-# C=A+B
+#  C=A+B
+
 # D=A-B
+# print(D)
 # E=A*B
 # print(E)
 # power = A**4
@@ -130,6 +133,32 @@ class matrix:
 # det_mat = [[2,2],[3,4]]
 # print(matrix.find_det(det_mat))
 
+import unittest
 
+class Testit(unittest.TestCase):
+    def test_add(self):
+        p1 = matrix([[2, 3], [4, 5]])
+        p2 = matrix([[2, 3], [4, 5]])
+        add = p1+p2
+        self.assertEqual(add, [[4,6], [8, 10]])
+    
+    def test_mul(self):
+        p1 = matrix([[2, 3, 6], [4, 5, 8]])
+        p2 = matrix([[2, 3, 7], [4, 5, 7], [1, 1, 1]])
+        multi = p1*p2
+        self.assertEqual(multi, [[22, 27, 41], [36, 45, 71]])
+    
+    def test_pow(self):
+        p1 = matrix([[2, 3, 4], [4, 3, 7], [5, 4, 1]])
+        power = p1**3
+        self.assertEqual(power, [[361, 333, 394], [526, 488, 607], [431, 382, 390]])
+
+
+if __name__ == "__main__":
+    unittest.main()
+
+
+
+  
 
 
